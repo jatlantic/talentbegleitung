@@ -38,13 +38,13 @@
 
 .heroTitle {
   font-family: var(--font-serif);
-  font-size: clamp(3.5rem, 9vw, 7.5rem); /* Extra large like Mercora */
+  font-size: clamp(4.5rem, 12vw, 13rem); /* Massive cinematic scale */
   font-weight: 500;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  margin-bottom: 32px;
-  max-width: 1000px;
-  color: #fff; /* Keep white for the hero against the dark transparent overlay */
+  line-height: 0.9; /* Tight leading */
+  letter-spacing: -0.04em; /* Tight tracking */
+  margin-bottom: 40px;
+  max-width: 1200px;
+  color: #fff;
 }
 
 .heroSubtitle {
@@ -89,11 +89,11 @@
 
 .sectionTitle {
   font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: clamp(3.5rem, 8vw, 8rem); /* Massive section titles */
   font-weight: 500;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   color: var(--text-primary);
-  line-height: 1.1;
+  line-height: 0.95;
 }
 
 .sectionContent {
@@ -109,30 +109,28 @@
 }
 
 .testimonialCard {
-  background: #ffffff;
-  border: 1px solid var(--border-color);
-  padding: 56px 48px;
-  border-radius: 32px;
+  background: transparent;
+  border: none;
+  padding: 40px 0;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
 }
 
 .testimonialCard:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
-  border-color: rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
 }
 
 .quote {
-  font-size: 1.15rem;
+  font-size: clamp(1.8rem, 3vw, 2.5rem); /* Huge quotes */
+  font-family: var(--font-serif);
   color: var(--text-primary);
-  margin-bottom: 40px;
-  font-style: italic;
-  line-height: 1.6;
-  font-weight: 300;
+  margin-bottom: 48px;
+  font-style: normal;
+  line-height: 1.2;
+  font-weight: 400;
+  letter-spacing: -0.02em;
 }
 
 .author {
@@ -150,8 +148,8 @@
 /* Split Layouts (Clients & Experience & About) */
 .splitSection {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  grid-template-columns: 1fr 1.5fr; /* Asymmetric grid tension */
+  gap: 12vw; /* Huge gap */
 }
 
 /* Clients */
@@ -161,12 +159,13 @@
 }
 
 .clientItem {
-  font-size: clamp(1.2rem, 2vw, 1.8rem);
-  font-weight: 300;
-  border-bottom: 1px solid var(--glass-border);
-  padding: 24px 0;
-  line-height: 1.4;
-  transition: color 0.3s ease;
+  font-size: clamp(2rem, 4vw, 3.5rem); /* Massive stark client list */
+  font-family: var(--font-serif);
+  font-weight: 400;
+  border-bottom: 1px solid var(--border-color);
+  padding: 32px 0;
+  line-height: 1.1;
+  transition: color 0.3s ease, padding-left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .clientItem:hover {
