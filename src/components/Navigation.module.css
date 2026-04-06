@@ -1,0 +1,130 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 24px 0;
+  z-index: 100;
+   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: transparent;
+}
+
+.scrolled {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 16px 0;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  color: #fff; /* Always white logo on hero */
+}
+
+.scrolled .logo {
+  color: var(--text-primary);
+}
+
+.logo span {
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--accent-gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.links {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #e0e0e0;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.scrolled .link {
+  color: var(--text-secondary);
+}
+
+.link:hover {
+  color: #fff;
+}
+
+.scrolled .link:hover {
+  color: var(--text-primary);
+}
+
+.toggle {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 30px;
+  padding: 6px 16px;
+  color: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.scrolled .toggle {
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.toggleBtn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 50%;
+  color: #fff;
+}
+
+.scrolled .toggleBtn {
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.toggleBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .linksNav {
+    display: none;
+  }
+}
