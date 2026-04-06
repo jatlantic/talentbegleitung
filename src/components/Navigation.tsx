@@ -8,19 +8,9 @@ import styles from './Navigation.module.css';
 
 export default function Navigation() {
   const { language, t, toggleLanguage } = useLanguage();
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
-    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
+    <nav className={styles.navbar}>
       <div className={styles.container}>
         <Link href="/" className={styles.logo}>
           M. Schäfer
