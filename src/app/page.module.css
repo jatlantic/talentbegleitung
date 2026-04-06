@@ -78,7 +78,7 @@
 
 /* Sections */
 .section {
-  padding: 140px 24px;
+  padding: var(--section-padding);
   position: relative;
 }
 
