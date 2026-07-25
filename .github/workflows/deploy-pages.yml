@@ -49,6 +49,9 @@ jobs:
         env:
           GITHUB_PAGES: 'true'
           BASE_PATH: ${{ steps.base.outputs.path }}
+          # Optional: add this repo secret so the contact form works here too.
+          # Without it the form falls back to opening the visitor's mail client.
+          NEXT_PUBLIC_WEB3FORMS_KEY: ${{ secrets.NEXT_PUBLIC_WEB3FORMS_KEY }}
         run: npm run build
 
       - uses: actions/configure-pages@v5

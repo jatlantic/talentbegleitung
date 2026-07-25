@@ -59,6 +59,16 @@
   background: rgba(255, 255, 255, 0.16);
 }
 
+/* Off-screen rather than display:none — bots skip hidden fields. */
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .privacy {
   font-size: 0.78rem;
   color: var(--ink-faint);
@@ -104,9 +114,22 @@
   transition: background-color 0.25s ease, transform 0.25s var(--ease);
 }
 
-.submit:hover {
+.submit:hover:not(:disabled) {
   background: rgba(255, 255, 255, 0.88);
   transform: translateY(-1px);
+}
+
+.submit:disabled,
+.field input:disabled,
+.field textarea:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.error a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
 }
 
 @media (max-width: 620px) {

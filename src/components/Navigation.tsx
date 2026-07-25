@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Logo from './Logo';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import { SECTIONS } from '@/lib/i18n/translations';
+import { handleAnchorClick } from '@/lib/anchorNav';
 import styles from './Navigation.module.css';
 
 export default function Navigation() {
@@ -44,7 +45,12 @@ export default function Navigation() {
 
         <nav className={styles.desktopNav} aria-label={t.nav.menu}>
           {links.map((link) => (
-            <Link key={link.href} href={link.href} className={styles.link}>
+            <Link
+              key={link.href}
+              href={link.href}
+              className={styles.link}
+              onClick={(e) => handleAnchorClick(e, link.href)}
+            >
               {link.label}
             </Link>
           ))}
@@ -81,7 +87,13 @@ export default function Navigation() {
               key={link.href}
               href={link.href}
               className={styles.drawerLink}
-              onClick={() => setOpen(false)}
+              onClick={(e) => {
+                // The open drawer locks body scrolling; release it before we
+                // scroll, since the effect that restores it runs too late.
+                document.body.style.overflow = '';
+                setOpen(false);
+                handleAnchorClick(e, link.href);
+              }}
             >
               {link.label}
             </Link>

@@ -119,6 +119,33 @@ All in the `:root` block of **`src/app/globals.css`**:
 
 ---
 
+## The contact form
+
+Submissions go through [Web3Forms](https://web3forms.com) — a plain browser
+`POST`, so it works on Vercel and on the GitHub Pages fallback alike.
+
+1. Go to <https://web3forms.com> and enter the destination address
+   (`schaefer@talentbegleiter.de`). The access key arrives by email.
+2. **Vercel** → Settings → Environment Variables → add
+   `NEXT_PUBLIC_WEB3FORMS_KEY`, then redeploy.
+3. **Locally** → `cp .env.example .env.local` and paste the key in.
+4. *(Optional)* **GitHub** → Settings → Secrets → Actions → add the same name,
+   so the Pages fallback has a working form too.
+
+The key is public by design: it identifies the inbox, it does not authorise
+anything. **With no key set the form still works** — it falls back to opening
+the visitor's mail client with the message pre-filled, so nothing breaks while
+you wait for the key.
+
+Spam protection: Web3Forms' own filtering plus an off-screen honeypot field.
+
+> ⚠️ The form and the Impressum point at **different domains**.
+> Enquiries go to `schaefer@talentbegleiter.de` (confirmed as the live inbox,
+> and the address to register with Web3Forms), while the Impressum, the footer
+> and the contact block display `schaefer@talentbegleitung.de`, reproduced
+> verbatim from the client's document. Worth consolidating — either set up
+> forwarding from the old domain, or update the displayed address.
+
 ## Known gaps
 
 - **Datenschutz** contains a clearly marked placeholder — the brief supplied only

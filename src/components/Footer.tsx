@@ -6,6 +6,7 @@ import Logo from './Logo';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import { SECTIONS } from '@/lib/i18n/translations';
 import { openCookieSettings } from '@/lib/cookies';
+import { handleAnchorClick } from '@/lib/anchorNav';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -33,7 +34,12 @@ export default function Footer() {
         <div className={styles.column}>
           <h2 className={styles.columnTitle}>{t.footer.navTitle}</h2>
           {links.map((link) => (
-            <Link key={link.href} href={link.href} className={styles.link}>
+            <Link
+              key={link.href}
+              href={link.href}
+              className={styles.link}
+              onClick={(e) => handleAnchorClick(e, link.href)}
+            >
               {link.label}
             </Link>
           ))}
