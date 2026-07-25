@@ -1,8 +1,12 @@
 name: Deploy to GitHub Pages
 
+# Fallback deploy target — Vercel is primary, so this only runs when you
+# start it by hand: Actions tab → "Deploy to GitHub Pages" → Run workflow.
+#
+# Before the first run, switch Pages on:
+#   Settings → Pages → Build and deployment → Source: GitHub Actions
+# Note that a Pages site is publicly reachable even from a private repo.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 # Allow GITHUB_TOKEN to publish to Pages.

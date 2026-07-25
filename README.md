@@ -43,14 +43,17 @@ To use the real domain: Vercel project → **Settings → Domains** → add
 `talentbegleitung.com` and `www.talentbegleitung.com`, then point the DNS records
 Vercel shows you at your registrar.
 
-### GitHub Pages (free)
+### GitHub Pages (fallback)
 
-A workflow at `.github/workflows/deploy-pages.yml` builds and publishes on every
-push to `main`.
+Vercel is the primary target. `.github/workflows/deploy-pages.yml` is kept as a
+backup and runs **only when started by hand** — it has no `push` trigger.
 
-1. Push the repository to GitHub.
-2. Repo → **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-3. Push to `main` (or run the workflow manually from the **Actions** tab).
+1. Repo → **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+2. **Actions** tab → *Deploy to GitHub Pages* → **Run workflow**.
+
+> A Pages site is publicly reachable even when the repository is private
+> (private Pages needs GitHub Enterprise), so only turn this on when the site
+> is ready to be seen.
 
 The workflow figures out the base path on its own:
 
