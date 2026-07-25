@@ -124,20 +124,18 @@ All in the `:root` block of **`src/app/globals.css`**:
 Submissions go through [Web3Forms](https://web3forms.com) — a plain browser
 `POST`, so it works on Vercel and on the GitHub Pages fallback alike.
 
-1. Go to <https://web3forms.com> and enter the destination address
-   (`schaefer@talentbegleiter.de`). The access key arrives by email.
-2. **Vercel** → Settings → Environment Variables → add
-   `NEXT_PUBLIC_WEB3FORMS_KEY`, then redeploy.
-3. **Locally** → `cp .env.example .env.local` and paste the key in.
-4. *(Optional)* **GitHub** → Settings → Secrets → Actions → add the same name,
-   so the Pages fallback has a working form too.
+**Nothing to configure.** The access key lives in `src/lib/contact.ts` and
+delivers to `schaefer@talentbegleiter.de`. It is a public key by design — it
+names the inbox, it does not authorise anything, and it ships inside the client
+bundle of every built page no matter where it is stored.
 
-The key is public by design: it identifies the inbox, it does not authorise
-anything. **With no key set the form still works** — it falls back to opening
-the visitor's mail client with the message pre-filled, so nothing breaks while
-you wait for the key.
+To rotate it, or to point submissions at a test inbox, set
+`NEXT_PUBLIC_WEB3FORMS_KEY` (Vercel → Settings → Environment Variables, or
+`.env.local` locally). That overrides the built-in value.
 
 Spam protection: Web3Forms' own filtering plus an off-screen honeypot field.
+If the API is ever unreachable the form keeps what the visitor typed, shows an
+error, and offers a direct mailto link instead of losing the enquiry.
 
 > ⚠️ The form and the Impressum point at **different domains**.
 > Enquiries go to `schaefer@talentbegleiter.de` (confirmed as the live inbox,
