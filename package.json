@@ -1,12 +1,14 @@
 {
-  "name": "website_malou",
-  "version": "0.1.0",
+  "name": "talentbegleitung",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "build:pages": "GITHUB_PAGES=true next build",
+    "preview:pages": "npm run build:pages && npx --yes serve out"
   },
   "dependencies": {
     "next": "16.2.1",

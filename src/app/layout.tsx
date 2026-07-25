@@ -1,22 +1,36 @@
 import type { Metadata } from 'next';
-import { Outfit, Playfair_Display } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import { LanguageProvider } from '@/lib/i18n/LanguageContext';
-import { ThemeProvider } from '@/lib/theme/ThemeContext';
+import CookieBanner from '@/components/CookieBanner';
 
-const outfit = Outfit({
-  variable: '--font-sans',
+const inter = Inter({
+  variable: '--font-inter',
   subsets: ['latin'],
-});
-
-const playfair = Playfair_Display({
-  variable: '--font-serif',
-  subsets: ['latin'],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: 'Marie-Louise Schäfer | Talentbegleiter',
-  description: 'Organisationsentwicklung & Executive Coaching in München & Salzburg',
+  metadataBase: new URL('https://www.talentbegleitung.com'),
+  title: {
+    default: 'Talentbegleitung | Marie-Louise Schäfer',
+    template: '%s | Talentbegleitung',
+  },
+  description:
+    'Talentbegleitung für Führungspersönlichkeiten, Teams und Organisationen: Executive Coaching, Teamentwicklung, Alps Days, Trainings und Organisationsimpulse.',
+  openGraph: {
+    title: 'Talentbegleitung | Marie-Louise Schäfer',
+    description:
+      'Sie im Mittelpunkt. Führung stärken. Wandel gestalten. Talentbegleitung für Führungspersönlichkeiten, Teams und Organisationen.',
+    url: 'https://www.talentbegleitung.com',
+    siteName: 'Talentbegleitung',
+    locale: 'de_DE',
+    type: 'website',
+  },
+};
+
+export const viewport = {
+  themeColor: '#89A3B0',
 };
 
 export default function RootLayout({
@@ -25,13 +39,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className={`${outfit.variable} ${playfair.variable}`}>
+    <html lang="de" className={inter.variable}>
       <body>
-        <ThemeProvider>
-          <LanguageProvider>
-            {children}
-          </LanguageProvider>
-        </ThemeProvider>
+        <LanguageProvider>
+          {children}
+          <CookieBanner />
+        </LanguageProvider>
       </body>
     </html>
   );

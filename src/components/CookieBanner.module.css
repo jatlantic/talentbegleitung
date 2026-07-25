@@ -1,0 +1,160 @@
+.wrap {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 300;
+  padding: 16px var(--gutter);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.panel {
+  pointer-events: auto;
+  width: 100%;
+  max-width: var(--container);
+  background: var(--brand-ink);
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 22px 26px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 28px;
+  animation: slideUp 0.45s var(--ease);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.body {
+  max-width: 620px;
+}
+
+.title {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.text {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.option input {
+  margin-top: 3px;
+  width: 16px;
+  height: 16px;
+  accent-color: #ffffff;
+  flex-shrink: 0;
+}
+
+.option span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.option strong {
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.option em {
+  font-style: normal;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+}
+
+.privacyLink {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.privacyLink:hover {
+  color: var(--ink);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.primary,
+.ghost {
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-size: 0.83rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.primary {
+  background: #ffffff;
+  color: var(--brand-ink);
+  border: 1px solid #ffffff;
+}
+
+.primary:hover {
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.ghost {
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink-muted);
+}
+
+.ghost:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+@media (max-width: 860px) {
+  .panel {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .actions {
+    width: 100%;
+  }
+
+  .primary,
+  .ghost {
+    flex: 1 1 auto;
+  }
+}

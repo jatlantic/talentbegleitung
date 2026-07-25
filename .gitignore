@@ -40,3 +40,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 dev.log
+
+# local source material — not part of the deployed site.
+# Delete these lines if you'd rather keep the brief in the repo.
+*.docx
+/variants/

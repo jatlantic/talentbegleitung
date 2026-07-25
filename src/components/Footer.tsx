@@ -2,27 +2,46 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Logo from './Logo';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { SECTIONS } from '@/lib/i18n/translations';
+import { openCookieSettings } from '@/lib/cookies';
 import styles from './Footer.module.css';
 
 export default function Footer() {
   const { t } = useLanguage();
 
+  const links = [
+    { href: `/#${SECTIONS.home}`, label: t.nav.home },
+    { href: `/#${SECTIONS.services}`, label: t.nav.services },
+    { href: `/#${SECTIONS.stories}`, label: t.nav.stories },
+    { href: `/#${SECTIONS.philosophy}`, label: t.nav.philosophy },
+    { href: `/#${SECTIONS.profile}`, label: t.nav.profile },
+  ];
+
   return (
-    <footer className={styles.footer} id="contact">
-      <div className={styles.container}>
+    <footer className={styles.footer}>
+      <div className={styles.inner}>
         <div className={styles.brand}>
-          <div className={styles.logo}>
-            M. Schäfer
-            <span>Talentbegleiter</span>
-          </div>
-          <p className={styles.desc}>
-            {t.contact.subtitle}
-          </p>
+          <Link href="/" className={styles.brandRow}>
+            <Logo className={styles.mark} />
+            <span className={styles.wordmark}>Talentbegleitung</span>
+          </Link>
+          <p className={styles.tagline}>{t.footer.tagline}</p>
         </div>
 
         <div className={styles.column}>
-          <h4 className={styles.title}>{t.nav.contact}</h4>
+          <h2 className={styles.columnTitle}>{t.footer.navTitle}</h2>
+          {links.map((link) => (
+            <Link key={link.href} href={link.href} className={styles.link}>
+              {link.label}
+            </Link>
+          ))}
+        </div>
+
+        <div className={styles.column}>
+          <h2 className={styles.columnTitle}>{t.footer.contactTitle}</h2>
+          <span className={styles.static}>{t.contact.name}</span>
           <a href={`tel:${t.contact.phone.replace(/[^0-9+]/g, '')}`} className={styles.link}>
             {t.contact.phone}
           </a>
@@ -32,16 +51,24 @@ export default function Footer() {
         </div>
 
         <div className={styles.column}>
-          <h4 className={styles.title}>Menu</h4>
-          <Link href="#services" className={styles.link}>{t.nav.services}</Link>
-          <Link href="#experience" className={styles.link}>{t.nav.experience}</Link>
-          <Link href="#about" className={styles.link}>{t.nav.about}</Link>
+          <h2 className={styles.columnTitle}>{t.footer.legalTitle}</h2>
+          <Link href="/impressum" className={styles.link}>
+            {t.footer.imprint}
+          </Link>
+          <Link href="/datenschutz" className={styles.link}>
+            {t.footer.privacy}
+          </Link>
+          <button type="button" onClick={openCookieSettings} className={styles.linkButton}>
+            {t.footer.cookies}
+          </button>
         </div>
       </div>
 
       <div className={styles.bottom}>
-        <div>&copy; {new Date().getFullYear()} Marie-Louise Schäfer. All rights reserved.</div>
-        <div>München & Salzburg</div>
+        <span>
+          &copy; {new Date().getFullYear()} Marie-Louise Schäfer, Talentbegleitung. {t.footer.rights}
+        </span>
+        <span>Bayerisch Gmain</span>
       </div>
     </footer>
   );

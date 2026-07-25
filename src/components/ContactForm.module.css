@@ -1,0 +1,121 @@
+.form {
+  background: var(--brand-deep);
+  border: 1px solid var(--rule-soft);
+  border-radius: 22px;
+  padding: clamp(24px, 4vw, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: var(--shadow);
+}
+
+.title {
+  font-size: 1.18rem;
+  margin-bottom: 2px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.field span {
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.field input,
+.field textarea {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  color: var(--ink);
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+  width: 100%;
+  resize: vertical;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--ink-faint);
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.privacy {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+}
+
+.privacy a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.privacy a:hover {
+  color: var(--ink);
+}
+
+.error,
+.success {
+  font-size: 0.85rem;
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.error {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid #ffffff;
+}
+
+.success {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid var(--rule);
+}
+
+.submit {
+  align-self: flex-start;
+  margin-top: 4px;
+  background: #ffffff;
+  color: var(--brand-ink);
+  border: 1px solid #ffffff;
+  border-radius: 999px;
+  padding: 13px 28px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.25s var(--ease);
+}
+
+.submit:hover {
+  background: rgba(255, 255, 255, 0.88);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 620px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .submit {
+    align-self: stretch;
+    text-align: center;
+  }
+}

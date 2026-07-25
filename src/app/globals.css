@@ -1,41 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap');
-
 :root {
-  --bg-primary: #FFF9EE;
-  --bg-secondary: #F8F1E4;
-  --bg-tertiary: #F0E6D6;
-  
-  --text-primary: #1A1A1A;
-  --text-secondary: #5F5F5F;
-  
-  --accent-gold: #1A1A1A; /* Mercora uses dark charcoal for emphasis and primary buttons */
-  --accent-gold-hover: #333333;
-  --accent-text: #FFFFFF;
-  
-  --border-color: rgba(0, 0, 0, 0.08); /* soft lines */
-  --glass-bg: rgba(255, 249, 238, 0.85); /* cream glass */
-  --glass-border: rgba(0, 0, 0, 0.05);
+  /* ------------------------------------------------------------------
+     Brand colour — exactly as specified:
+     RGB 137 / 163 / 176  ·  HEX #89A3B0  ·  CMYK 43.8 / 19.7 / 12.98 / 4.65
+     Everything else is a tint or shade of the same hue.
+     ------------------------------------------------------------------ */
+  --brand: #89a3b0;
+  --brand-tint: #93abb7; /* subtle section alternation */
+  --brand-deep: #7b96a4; /* cards / raised surfaces */
+  --brand-deeper: #6d8a99; /* nav + footer */
+  --brand-ink: #33505d; /* deepest shade, used sparingly */
 
-  --hero-overlay: rgba(26, 26, 26, 0.6); /* elegant dark overlay for hero image */
-  
-  --font-sans: 'Outfit', sans-serif;
-  --font-serif: var(--font-serif), 'Playfair Display', serif;
-  
-  --container-width: 1200px;
-  --section-padding: 160px 24px; /* More 'creamspace' */
-}
+  /* Type is white throughout, per spec. */
+  --ink: #ffffff;
+  --ink-muted: rgba(255, 255, 255, 0.82);
+  --ink-faint: rgba(255, 255, 255, 0.64);
 
+  --rule: rgba(255, 255, 255, 0.28);
+  --rule-soft: rgba(255, 255, 255, 0.16);
+  --glass: rgba(97, 126, 141, 0.9);
+  --shadow: 0 18px 48px rgba(51, 80, 93, 0.18);
 
+  --font-sans: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
-body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: var(--font-sans);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  transition: background-color 0.4s ease, color 0.4s ease;
+  /* Line spacing 1.15, as specified. Raise --leading-body if the long
+     paragraphs should breathe more — nothing else needs to change. */
+  --leading: 1.15;
+  --leading-body: 1.15;
+
+  --container: 1180px;
+  --container-narrow: 780px;
+  --section-y: clamp(80px, 11vw, 150px);
+  --gutter: clamp(20px, 5vw, 48px);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * {
@@ -44,48 +40,100 @@ body {
   margin: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 120px;
+  background-color: var(--brand);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+  background-color: var(--brand);
+  color: var(--ink);
   font-family: var(--font-sans);
-  line-height: 1.6;
+  font-size: 17px;
+  line-height: var(--leading);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  line-height: var(--leading);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+p,
+li {
+  line-height: var(--leading-body);
+}
+
+p + p {
+  margin-top: 1.1em;
+}
+
 a {
   color: inherit;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.25s ease, opacity 0.25s ease;
 }
 
 ul {
   list-style: none;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+::selection {
+  background: #ffffff;
+  color: var(--brand-ink);
 }
 
-.glass-panel {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
+:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+  border-radius: 4px;
 }
+
+/* Shared layout helpers -------------------------------------------------- */
 
 .container {
-  max-width: var(--container-width);
+  width: 100%;
+  max-width: var(--container);
   margin: 0 auto;
+  padding-inline: var(--gutter);
 }
 
-section {
-  padding: var(--section-padding);
+/* Reveal-on-scroll, progressively enhanced: visible by default, hidden only
+   once the observer in useReveal marks the element as pending. */
+[data-reveal='pending'] {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+[data-reveal='shown'] {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
 }

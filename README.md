@@ -1,36 +1,128 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Talentbegleitung — Marie-Louise Schäfer
 
-## Getting Started
+Bilingual (DE/EN) one-page website with separate Impressum and Datenschutz pages.
+Next.js 16 (App Router) · React 19 · TypeScript · CSS Modules · no runtime dependencies beyond React.
 
-First, run the development server:
+Intended production domain: **www.talentbegleitung.com**
+
+---
+
+## Run it locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open <http://localhost:3000>.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Script | What it does |
+| --- | --- |
+| `npm run dev` | Dev server with hot reload |
+| `npm run build` | Production build (this is what Vercel runs) |
+| `npm start` | Serve the production build locally |
+| `npm run lint` | ESLint |
+| `npm run build:pages` | Static export into `./out` for GitHub Pages |
+| `npm run preview:pages` | Build the static export and serve it locally |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Deploying
 
-To learn more about Next.js, take a look at the following resources:
+The site is fully static — no database, no server code, no API routes — so both
+targets below work without changes.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Vercel (recommended)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Push this repository to GitHub.
+2. <https://vercel.com/new> → **Import** the repository.
+3. Accept every default (Vercel detects Next.js: build `npm run build`, output `.next`).
+4. Deploy.
 
-## Deploy on Vercel
+To use the real domain: Vercel project → **Settings → Domains** → add
+`talentbegleitung.com` and `www.talentbegleitung.com`, then point the DNS records
+Vercel shows you at your registrar.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### GitHub Pages (free)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+A workflow at `.github/workflows/deploy-pages.yml` builds and publishes on every
+push to `main`.
+
+1. Push the repository to GitHub.
+2. Repo → **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+3. Push to `main` (or run the workflow manually from the **Actions** tab).
+
+The workflow figures out the base path on its own:
+
+| Repository | Site URL | Base path |
+| --- | --- | --- |
+| `website_malou` | `https://<user>.github.io/website_malou/` | `/website_malou` |
+| `<user>.github.io` | `https://<user>.github.io/` | none |
+| any, with `public/CNAME` | your custom domain | none |
+
+**Custom domain on Pages:** create `public/CNAME` containing a single line
+(`www.talentbegleitung.com`), commit it, and set the same domain under
+Settings → Pages. The workflow then builds without a base path automatically.
+
+> Vercel and GitHub Pages can both be live at once — they build from the same
+> commit and produce the same site.
+
+---
+
+## Layout of the code
+
+```
+src/
+  app/
+    layout.tsx            Root layout: Inter font, metadata, providers, cookie banner
+    page.tsx              The one-page site (all five sections)
+    page.module.css       Section styles
+    globals.css           Design tokens — brand colour, type scale, spacing
+    icon.svg              Browser tab icon (white mark on brand blue-grey)
+    legal.module.css      Shared styles for the two legal pages
+    impressum/            Imprint  (page.tsx = metadata, content.tsx = markup)
+    datenschutz/          Privacy  (same split)
+  components/
+    Navigation.tsx        Fixed header, five tabs, DE/EN toggle, mobile drawer
+    Footer.tsx            Navigation / contact / legal columns
+    ContactForm.tsx       Name · Email · Telefonnummer · Nachricht
+    CookieBanner.tsx      Consent banner + preferences dialog
+    Logo.tsx              The three-chevron mark (inherits currentColor)
+  lib/
+    i18n/translations.ts  ← ALL WEBSITE TEXT LIVES HERE (German + English)
+    i18n/LanguageContext  Language state, persisted in localStorage
+    cookies.ts            Consent storage
+    useReveal.ts          Fade-in-on-scroll
+public/
+  logo.svg                Standalone white logo file
+  .nojekyll               Stops GitHub Pages from hiding the /_next folder
+```
+
+### Editing the text
+
+Everything visible on the site is in **`src/lib/i18n/translations.ts`** —
+German in the `de` object, English in `en`. The two are type-checked against
+each other, so a missing English key fails the build rather than shipping empty.
+
+### Editing the colours
+
+All in the `:root` block of **`src/app/globals.css`**:
+
+```css
+--brand: #89a3b0;   /* RGB 137/163/176 — the specified blue-grey */
+--ink:   #ffffff;   /* all type is white */
+--leading-body: 1.15;
+```
+
+---
+
+## Known gaps
+
+- **Datenschutz** contains a clearly marked placeholder — the brief supplied only
+  the heading. Real legal text is needed before going live.
+- **Profil** shows only the "Expertise & Zertifikate" list; the brief said
+  *"Hier bitte Profil reinsetzen (habe ich Email angehängt)"* and that attachment
+  was not part of the document.
+- **The contact form** has no backend. It composes the message and opens the
+  visitor's mail client. Swap `handleSubmit` in `ContactForm.tsx` for a POST to a
+  form service or server action once an endpoint exists.

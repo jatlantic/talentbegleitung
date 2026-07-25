@@ -2,37 +2,92 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Logo from './Logo';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
-import { useTheme } from '@/lib/theme/ThemeContext';
+import { SECTIONS } from '@/lib/i18n/translations';
 import styles from './Navigation.module.css';
 
 export default function Navigation() {
   const { language, t, toggleLanguage } = useLanguage();
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const links = [
+    { href: `/#${SECTIONS.home}`, label: t.nav.home },
+    { href: `/#${SECTIONS.services}`, label: t.nav.services },
+    { href: `/#${SECTIONS.stories}`, label: t.nav.stories },
+    { href: `/#${SECTIONS.philosophy}`, label: t.nav.philosophy },
+    { href: `/#${SECTIONS.profile}`, label: t.nav.profile },
+  ];
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
 
   return (
-    <nav className={styles.navbar}>
-      <div className={styles.container}>
-        <Link href="/" className={styles.logo}>
-          M. Schäfer
-          <span>Talentbegleiter</span>
+    <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
+      <div className={styles.inner}>
+        <Link href="/" className={styles.brand} onClick={() => setOpen(false)}>
+          <Logo className={styles.mark} />
+          <span className={styles.wordmark}>Talentbegleitung</span>
         </Link>
-        
-        <div className={styles.links}>
-          <div className={styles.linksNav}>
-            <Link href="#services" className={styles.link}>{t.nav.services}</Link>
-            <Link href="#experience" className={styles.link} style={{ marginLeft: '40px' }}>{t.nav.experience}</Link>
-            <Link href="#about" className={styles.link} style={{ marginLeft: '40px' }}>{t.nav.about}</Link>
-          </div>
-          
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <button onClick={toggleLanguage} className={styles.toggle} aria-label="Toggle language">
-              <span style={{ opacity: language === 'de' ? 1 : 0.4 }}>DE</span>
-              /
-              <span style={{ opacity: language === 'en' ? 1 : 0.4 }}>EN</span>
-            </button>
-          </div>
+
+        <nav className={styles.desktopNav} aria-label={t.nav.menu}>
+          {links.map((link) => (
+            <Link key={link.href} href={link.href} className={styles.link}>
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className={styles.actions}>
+          <button
+            onClick={toggleLanguage}
+            className={styles.toggle}
+            aria-label={language === 'de' ? 'Switch to English' : 'Auf Deutsch wechseln'}
+          >
+            <span className={language === 'de' ? styles.active : undefined}>DE</span>
+            <span className={styles.slash}>/</span>
+            <span className={language === 'en' ? styles.active : undefined}>EN</span>
+          </button>
+
+          <button
+            className={styles.burger}
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? t.nav.close : t.nav.open}
+            aria-expanded={open}
+          >
+            <span className={open ? styles.barTop : undefined} />
+            <span className={open ? styles.barMid : undefined} />
+            <span className={open ? styles.barBottom : undefined} />
+          </button>
         </div>
       </div>
-    </nav>
+
+      <div className={`${styles.drawer} ${open ? styles.drawerOpen : ''}`}>
+        <nav aria-label={t.nav.menu}>
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={styles.drawerLink}
+              onClick={() => setOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+      </div>
+    </header>
   );
 }
