@@ -7,8 +7,15 @@ export type Block = {
   heading?: string;
   text?: string;
   items?: string[];
+  /** Render `items` as a grid of boxes instead of a bullet list. */
+  boxed?: boolean;
+  /** Render as a process flow: boxes joined by the chevron mark. */
+  steps?: string[];
   links?: LinkItem[];
 };
+
+/** One line of the services overview; `id` anchors to the service section. Bold parts are marked with `**…**`. */
+export type SummaryItem = { id: string; text: string };
 
 export type Service = {
   id: string;
@@ -42,8 +49,7 @@ const de = {
   },
 
   hero: {
-    eyebrow: 'Talentbegleitung',
-    title: 'Sie im Mittelpunkt. Führung stärken. Wandel gestalten.',
+    title: 'Führung stärken. Teams befähigen. Zukunft gestalten.',
     lead: 'Talentbegleitung für Führungspersönlichkeiten, Teams und Organisationen, die in brüchigen und komplexen Zeiten handlungsfähig, klar und wirksam bleiben wollen.',
     cta: 'Kennenlerngespräch vereinbaren',
     ctaSecondary: 'Leistungen ansehen',
@@ -91,12 +97,28 @@ const de = {
     title: 'Leistungen',
     lead: 'Unsere Talentbegleitung bietet wirksame Formate für Individuen, Teams und Organisationen.',
     summary: [
-      'Im Executive Coaching stärken wir Ihre Führungsrolle, Entscheidungsfähigkeit und Präsenz.',
-      'In der Teamentwicklung begleiten wir Teams auf dem Weg zu High Performance und mehr Freude an Zusammenarbeit.',
-      'Mit Trainings und Organisationsimpulsen schaffen wir Räume für Lernen, Austausch und nachhaltige Veränderung.',
-      'Mit Alps Days bieten wir ein besonderes Format, in dem Naturerfahrung und strategische Klärung zusammenkommen.',
-    ],
-    note: 'Alle Formate sind praxisnah, vertraulich und auf Ihren Kontext zugeschnitten – vom digitalen Einzelcoaching bis zum mehrtägigen Workshop vor Ort.',
+      {
+        id: 'executive-coaching',
+        text: 'Im **Executive Coaching** stärken wir Ihre Führungsrolle, Entscheidungsfähigkeit und Präsenz.',
+      },
+      {
+        id: 'teamentwicklung',
+        text: 'In der **Teamentwicklung** begleiten wir Teams auf dem Weg zu High Performance und mehr Freude an Zusammenarbeit.',
+      },
+      {
+        id: 'trainings',
+        text: 'Mit **Trainings** schaffen wir Räume für Lernen, Austausch und nachhaltige Veränderung.',
+      },
+      {
+        id: 'alps-days',
+        text: 'Mit **Alps Days** bieten wir ein besonderes Format, in dem Naturerfahrung und strategische Klärung zusammenkommen.',
+      },
+      {
+        id: 'organisationsimpulse',
+        text: 'Weitere **Organisationsimpulse**? Wir konzipieren diese genau für Sie und Ihre Organisation.',
+      },
+    ] as SummaryItem[],
+    note: 'Alle Formate sind praxisnah, vertraulich und auf Ihren Kontext zugeschnitten – vom Einzelcoaching bis zum mehrtägigen Workshop vor Ort.',
     items: [
       {
         id: 'executive-coaching',
@@ -105,6 +127,7 @@ const de = {
         blocks: [
           {
             heading: 'Typische Coachingthemen',
+            boxed: true,
             items: [
               'Mitarbeiterführung, eine neue oder erweiterte Führungsaufgabe',
               'Verantwortungsübernahme und Unterstützung zur Steigerung der Schlagkraft Ihrer Teams',
@@ -129,6 +152,7 @@ const de = {
         blocks: [
           {
             heading: 'Wir unterstützen Sie, damit Ihr Team erfolgreich ist bei',
+            boxed: true,
             items: [
               'Akzeptanz von Veränderungen',
               'Ungleichverteilung von Expertise',
@@ -147,16 +171,15 @@ const de = {
           },
           {
             heading: 'Typischer Ablauf',
-            items: [
+            steps: [
               'Sagen Sie Hallo.',
               'Kennenlerngespräch mit der Führungspersönlichkeit.',
               'Optional: Interviews mit den Mitarbeitenden.',
               'Workshop inklusive Vor- und Nachbereitung.',
-              'Der Workshop findet vor Ort bei Ihnen oder an einem gemeinsam gewählten Workshoport statt.',
             ],
           },
           {
-            text: 'In einem Teamentwicklungsprozess von ein bis drei Tagen wird ein hochindividueller Mehrwert für Ihr Team gemeinsam erarbeitet.',
+            text: 'Der Workshop findet vor Ort bei Ihnen oder an einem gemeinsam gewählten Workshoport statt. In einem Teamentwicklungsprozess von ein bis drei Tagen wird ein hochindividueller Mehrwert für Ihr Team gemeinsam erarbeitet.',
           },
         ],
       },
@@ -189,6 +212,7 @@ const de = {
         lead: 'Wir bieten Trainings zu verschiedenen Themen an, unter anderem:',
         blocks: [
           {
+            boxed: true,
             items: [
               'Resilienz',
               'Stressabbau',
@@ -229,6 +253,21 @@ const de = {
         ],
       },
     ] as Service[],
+    focusTitle: 'Kunden-Schwerpunkte',
+    focus: [
+      'Automotive und Zulieferer',
+      'Bildungswesen',
+      'Gründer und Start-up-Industrie',
+      'Food',
+      'Gesellschaft, Wissenschaft & Politik',
+      'Gesundheitswesen',
+      'Großkanzleien',
+      'Maschinenbau',
+      'Mittelstand',
+      'Wissenschaftssektor',
+    ],
+    languagesTitle: 'Wir begleiten Sie in folgenden Arbeitssprachen',
+    languages: ['Deutsch', 'Englisch', 'Französisch', 'Spanisch'],
   },
 
   stories: {
@@ -265,26 +304,16 @@ const de = {
         author: 'Senior Manager, Private Equity Firm',
       },
     ],
-    focusTitle: 'Kunden-Schwerpunkte',
-    focus: [
-      'Automotive und Zulieferer',
-      'Bildungswesen',
-      'Gründer und Start-up-Industrie',
-      'Food',
-      'Gesellschaft, Wissenschaft & Politik',
-      'Gesundheitswesen',
-      'Großkanzleien',
-      'Maschinenbau',
-      'Mittelstand',
-      'Wissenschaftssektor',
-    ],
-    languagesTitle: 'Wir begleiten Sie in folgenden Arbeitssprachen',
-    languages: ['Deutsch', 'Englisch', 'Französisch', 'Spanisch'],
   },
 
   philosophy: {
     title: 'Philosophie',
-    text: 'Talentbegleiter sind Potenzialverstärker und Brückenbauer zwischen jetzigem und zukünftigem Erfolg, Technologiebrückenköpfe und vertrauliche Wegbegleiter für Sie. Uns geht es darum, dass Sie Ihr Potenzial voll entfalten und Ihre Stärken, Kompetenzen und Beziehungen auf individueller, Team- und Organisationsebene wirksam nutzen können.',
+    paragraphs: [
+      'Talentbegleiter sind **Potenzialverstärker** und **Brückenbauer** zwischen jetzigem und zukünftigem Erfolg.',
+      'Wir fungieren als **Technologiebrückenköpfe** und **vertrauliche Wegbegleiter** für Sie.',
+      'Entfalten Sie Ihr Potenzial voll. Nutzen Sie Ihre Stärken, Kompetenzen und Beziehungen auf individueller, Team- und Organisationsebene vollumfänglich!',
+    ],
+    cta: 'Gerne mit uns.',
   },
 
   profile: {
@@ -292,10 +321,21 @@ const de = {
     profileTitle: 'Profil',
     profileLead: 'Talentbegleitung hat jahrzehntelange Expertise & Zertifikate in den Bereichen',
     credentials: [
-      'Coaching, Training, Workshops',
-      'Mediation, Moderation, Verhandlungsführung',
-      'Master Business with AI',
+      'Coaching, Training, Workshops – stärkenorientiert und systemisch, für Führungspersönlichkeiten, Teams und Organisationen',
+      'Mediation, Moderation, Verhandlungsführung – für Klärung und tragfähige Ergebnisse in anspruchsvollen Situationen',
+      'Master Business with AI – fundierte Orientierung für den sinnvollen Einsatz neuer Technologien',
     ],
+    focusLink: 'Zu unseren Kunden-Schwerpunkten',
+    founderTitle: 'Das Gesicht der Gründerin',
+    founderName: 'Marie-Louise Schäfer, MBAI',
+    founderRole: 'Gründerin von Talentbegleitung',
+    founderText:
+      'Juristin, ausgebildete Mediatorin und systemische Coachin – mit Stationen bei Roland Berger, der Technischen Universität München und im Management-Team der Max Planck Digital Library. 2011 gründete sie Talentbegleitung für Persönlichkeits- und Organisationsentwicklung. 2025 folgte das Universitätszertifikat Master Business with AI (MBAI®) der Hochschule Fresenius; seit 2026 ist sie zudem Partnerin bei Doujak Corporate Development.',
+    founderMotto: '„Don’t limit your challenges. Challenge your limits.“',
+    founderLink: {
+      label: 'LinkedIn-Profil',
+      href: 'https://www.linkedin.com/in/marie-louise-sch%C3%A4fer-989189129/',
+    },
     publicationsTitle: 'Publikationen',
     publicationsLead: 'Wir teilen unsere Gedanken gerne mit Ihnen. Sie finden unsere Publikationen in:',
     publications: [
@@ -315,7 +355,7 @@ const de = {
 
   contact: {
     kicker: 'Einfach.machen – einfach mit uns.',
-    title: 'Sagen Sie hallo.',
+    title: 'Sagen Sie Hallo.',
     name: 'Marie-Louise Schäfer',
     phoneLabel: 'Telefon',
     phone: '+49 151 2726 8926',
@@ -459,11 +499,10 @@ const en: TranslationType = {
   },
 
   hero: {
-    eyebrow: 'Talentbegleitung',
-    title: 'You matter. Strengthen leadership. Shape change.',
+    title: 'Strengthen leadership. Empower teams. Shape the future.',
     lead: 'Talent facilitation for leaders, teams, and organizations who want to stay clear, effective, and able to act in brittle and complex times.',
-    cta: 'Arrange an introductory conversation',
-    ctaSecondary: 'See our services',
+    cta: 'Tell us about your challenge',
+    ctaSecondary: 'Explore our services',
   },
 
   intro: {
@@ -508,12 +547,28 @@ const en: TranslationType = {
     title: 'Services',
     lead: 'Our talent facilitation offers effective formats for individuals, teams, and organizations.',
     summary: [
-      'In Executive Coaching, we strengthen your leadership role, decision-making, and presence.',
-      'In Team Development, we support teams on their path to high performance and more enjoyment in working together.',
-      'With Trainings and Organizational Impulses, we create spaces for learning, exchange, and sustainable change.',
-      'With Alps Days, we offer a distinctive format where time in nature and strategic clarity come together.',
-    ],
-    note: 'All formats are practical, confidential, and tailored to your context – from virtual one-on-one coaching to multi-day in-person workshops.',
+      {
+        id: 'executive-coaching',
+        text: 'In **Executive Coaching**, we strengthen your leadership role, decision-making, and presence.',
+      },
+      {
+        id: 'teamentwicklung',
+        text: 'In **Team Development**, we support teams on their path to high performance and more enjoyment in working together.',
+      },
+      {
+        id: 'trainings',
+        text: 'With **Trainings**, we create spaces for learning, exchange, and sustainable change.',
+      },
+      {
+        id: 'alps-days',
+        text: 'With **Alps Days**, we offer a distinctive format where time in nature and strategic clarity come together.',
+      },
+      {
+        id: 'organisationsimpulse',
+        text: 'Looking for further **Organizational Impulses**? We design them precisely for you and your organization.',
+      },
+    ] as SummaryItem[],
+    note: 'All formats are practical, confidential, and tailored to your context – from one-on-one coaching to multi-day in-person workshops.',
     items: [
       {
         id: 'executive-coaching',
@@ -522,6 +577,7 @@ const en: TranslationType = {
         blocks: [
           {
             heading: 'Typical coaching topics',
+            boxed: true,
             items: [
               'Leading employees; stepping into a new or expanded leadership role',
               'Taking on responsibility and increasing the impact of your teams',
@@ -546,6 +602,7 @@ const en: TranslationType = {
         blocks: [
           {
             heading: 'We support you in enabling your team to succeed when it comes to',
+            boxed: true,
             items: [
               'Accepting change',
               'Uneven distribution of expertise',
@@ -564,16 +621,15 @@ const en: TranslationType = {
           },
           {
             heading: 'Typical steps',
-            items: [
+            steps: [
               'Say hello.',
               'Introductory conversation with the leader.',
               'Optional: Interviews with team members.',
               'Workshop including preparation and follow-up.',
-              'The workshop takes place either at your location or at a jointly chosen workshop venue.',
             ],
           },
           {
-            text: 'In a team development process of one to three days, we create highly individualized added value for your team.',
+            text: 'The workshop takes place either at your location or at a jointly chosen workshop venue. In a team development process of one to three days, we create highly individualized added value for your team.',
           },
         ],
       },
@@ -606,6 +662,7 @@ const en: TranslationType = {
         lead: 'We offer trainings on a range of topics, including:',
         blocks: [
           {
+            boxed: true,
             items: [
               'Resilience',
               'Stress reduction',
@@ -646,6 +703,20 @@ const en: TranslationType = {
         ],
       },
     ] as Service[],
+    focusTitle: 'Client Focus Areas',
+    focus: [
+      'Automotive and suppliers',
+      'Education sector',
+      'Food industry',
+      'Founders and start-up sector',
+      'Global law firms',
+      'Healthcare',
+      'Mechanical engineering',
+      'Mid-sized companies (Mittelstand)',
+      'Society, academia & policy',
+    ],
+    languagesTitle: 'We facilitate in the following languages',
+    languages: ['German', 'English', 'French', 'Spanish'],
   },
 
   stories: {
@@ -683,25 +754,16 @@ const en: TranslationType = {
         author: 'Senior Manager, Private equity firm',
       },
     ],
-    focusTitle: 'Client Focus Areas',
-    focus: [
-      'Automotive and suppliers',
-      'Education sector',
-      'Food industry',
-      'Founders and start-up sector',
-      'Global law firms',
-      'Healthcare',
-      'Mechanical engineering',
-      'Mid-sized companies (Mittelstand)',
-      'Society, academia & policy',
-    ],
-    languagesTitle: 'We facilitate in the following languages',
-    languages: ['German', 'English', 'French', 'Spanish'],
   },
 
   philosophy: {
     title: 'Philosophy',
-    text: 'Talent facilitators are amplifiers of potential and bridge-builders between current and future success, bridgeheads between people and technology, and confidential companions on your path. Our purpose is to enable you to fully unfold your potential and to use your strengths, capabilities, and relationships effectively – at the individual, team, and organizational level.',
+    paragraphs: [
+      'Talent facilitators are **amplifiers of potential** and **bridge-builders** between current and future success.',
+      'We act as **technology bridgeheads** and **confidential companions** on your path.',
+      'Unfold your full potential. Make full use of your strengths, capabilities, and relationships at the individual, team, and organizational level!',
+    ],
+    cta: 'Gladly with us.',
   },
 
   profile: {
@@ -709,10 +771,21 @@ const en: TranslationType = {
     profileTitle: 'Profile',
     profileLead: 'Talentbegleitung brings decades of experience and solid credentials in:',
     credentials: [
-      'Coaching, training, and workshops',
-      'Mediation, facilitation, and negotiation',
-      'Master Business with AI',
+      'Coaching, training, and workshops – strengths-based and systemic, for leaders, teams, and organizations',
+      'Mediation, facilitation, and negotiation – for clarity and sustainable outcomes in demanding situations',
+      'Master Business with AI – well-founded orientation for the meaningful use of new technologies',
     ],
+    focusLink: 'See our client focus areas',
+    founderTitle: 'The face of the founder',
+    founderName: 'Marie-Louise Schäfer, MBAI',
+    founderRole: 'Founder of Talentbegleitung',
+    founderText:
+      'Lawyer, trained mediator, and systemic coach – with previous roles at Roland Berger, the Technical University of Munich, and on the management team of the Max Planck Digital Library. In 2011 she founded Talentbegleitung for personality and organizational development. In 2025 she completed the Master Business with AI (MBAI®) university certificate at Fresenius University of Applied Sciences; since 2026 she is also a partner at Doujak Corporate Development.',
+    founderMotto: '“Don’t limit your challenges. Challenge your limits.”',
+    founderLink: {
+      label: 'LinkedIn profile',
+      href: 'https://www.linkedin.com/in/marie-louise-sch%C3%A4fer-989189129/',
+    },
     publicationsTitle: 'Publications',
     publicationsLead: 'We are happy to share our thinking with you. Selected publications include:',
     publications: [
@@ -861,7 +934,9 @@ export const translations: Record<Language, TranslationType> = { de, en };
 export const SECTIONS = {
   home: 'sie-im-mittelpunkt',
   services: 'leistungen',
+  focus: 'kunden-schwerpunkte',
   stories: 'erfolgsgeschichten',
   philosophy: 'philosophie',
   profile: 'profil-publikationen',
+  contact: 'kontakt',
 } as const;

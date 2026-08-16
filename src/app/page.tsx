@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import ContactForm from '@/components/ContactForm';
@@ -8,20 +9,47 @@ import Logo from '@/components/Logo';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import { SECTIONS, Block } from '@/lib/i18n/translations';
 import { useReveal } from '@/lib/useReveal';
+import portrait from '../../public/marie-louise-schaefer.jpg';
 import styles from './page.module.css';
+
+/** Render `**bold**` markers in translation strings as <strong>. */
+function renderEmphasis(text: string): React.ReactNode {
+  return text
+    .split('**')
+    .map((part, i) => (i % 2 === 1 ? <strong key={i}>{part}</strong> : part));
+}
 
 function ServiceBlock({ block }: { block: Block }) {
   return (
     <div className={styles.block}>
       {block.heading && <h4 className={styles.blockHeading}>{block.heading}</h4>}
       {block.text && <p className={styles.blockText}>{block.text}</p>}
-      {block.items && (
-        <ul className={styles.bullets}>
-          {block.items.map((item) => (
-            <li key={item}>{item}</li>
+      {block.steps && (
+        <div className={styles.steps} role="list">
+          {block.steps.map((step, i) => (
+            <React.Fragment key={step}>
+              {i > 0 && <Logo className={styles.stepArrow} />}
+              <div role="listitem" className={styles.step}>
+                {step}
+              </div>
+            </React.Fragment>
           ))}
-        </ul>
+        </div>
       )}
+      {block.items &&
+        (block.boxed ? (
+          <ul className={styles.topicGrid}>
+            {block.items.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        ) : (
+          <ul className={styles.bullets}>
+            {block.items.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        ))}
       {block.links && (
         <div className={styles.blockLinks}>
           {block.links.map((link) => (
@@ -48,12 +76,10 @@ export default function Home() {
         {/* ── Sie im Mittelpunkt / You matter ─────────────────────────── */}
         <section className={styles.hero} id={SECTIONS.home}>
           <div className={styles.heroInner}>
-            <Logo className={styles.heroMark} />
-            <p className={styles.eyebrow}>{t.hero.eyebrow}</p>
             <h1 className={styles.heroTitle}>{t.hero.title}</h1>
             <p className={styles.heroLead}>{t.hero.lead}</p>
             <div className={styles.heroActions}>
-              <a href={`#${SECTIONS.profile}`} className={styles.btnPrimary}>
+              <a href={`#${SECTIONS.contact}`} className={styles.btnPrimary}>
                 {t.hero.cta}
               </a>
               <a href={`#${SECTIONS.services}`} className={styles.btnGhost}>
@@ -70,9 +96,8 @@ export default function Home() {
               {t.intro.achieveTitle}
             </h2>
             <div className={styles.cards} data-reveal>
-              {t.intro.achieve.map((item, i) => (
+              {t.intro.achieve.map((item) => (
                 <article key={item.title} className={styles.card}>
-                  <span className={styles.cardNumber}>{String(i + 1).padStart(2, '0')}</span>
                   <h3 className={styles.cardTitle}>{item.title}</h3>
                   <p className={styles.cardText}>{item.text}</p>
                 </article>
@@ -100,7 +125,7 @@ export default function Home() {
                 <h3 className={styles.ctaTitle}>{t.intro.closingTitle}</h3>
                 <p className={styles.ctaText}>{t.intro.closingText}</p>
               </div>
-              <a href={`#${SECTIONS.profile}`} className={styles.btnPrimary}>
+              <a href={`#${SECTIONS.contact}`} className={styles.btnPrimary}>
                 {t.hero.cta}
               </a>
             </div>
@@ -111,25 +136,30 @@ export default function Home() {
         <section className={styles.section} id={SECTIONS.services}>
           <div className={styles.container}>
             <div className={styles.sectionHead} data-reveal>
-              <p className={styles.eyebrow}>{t.nav.services}</p>
               <h2 className={styles.sectionTitleLarge}>{t.services.title}</h2>
               <p className={styles.sectionLead}>{t.services.lead}</p>
             </div>
 
             <ul className={styles.summaryList} data-reveal>
-              {t.services.summary.map((line) => (
-                <li key={line}>{line}</li>
+              {t.services.summary.map((item) => (
+                <li key={item.id}>
+                  <a href={`#${item.id}`}>
+                    <span>{renderEmphasis(item.text)}</span>
+                    <span className={styles.summaryArrow} aria-hidden="true">
+                      ↓
+                    </span>
+                  </a>
+                </li>
               ))}
             </ul>
 
-            <p className={styles.note} data-reveal>
+            <p className={`${styles.sectionLead} ${styles.noteLead}`} data-reveal>
               {t.services.note}
             </p>
 
             <div className={styles.services}>
-              {t.services.items.map((service, i) => (
+              {t.services.items.map((service) => (
                 <article key={service.id} id={service.id} className={styles.service} data-reveal>
-                  <div className={styles.serviceIndex}>{String(i + 1).padStart(2, '0')}</div>
                   <div className={styles.serviceBody}>
                     <h3 className={styles.serviceTitle}>{service.title}</h3>
                     <p className={styles.serviceLead}>{service.lead}</p>
@@ -140,6 +170,25 @@ export default function Home() {
                 </article>
               ))}
             </div>
+
+            <div className={styles.twoUp} id={SECTIONS.focus} data-reveal>
+              <div>
+                <h3 className={styles.subTitle}>{t.services.focusTitle}</h3>
+                <ul className={styles.chips}>
+                  {t.services.focus.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3 className={styles.subTitle}>{t.services.languagesTitle}</h3>
+                <ul className={styles.chips}>
+                  {t.services.languages.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -147,7 +196,6 @@ export default function Home() {
         <section className={styles.sectionDeep} id={SECTIONS.stories}>
           <div className={styles.container}>
             <div className={styles.sectionHead} data-reveal>
-              <p className={styles.eyebrow}>{t.nav.stories}</p>
               <h2 className={styles.sectionTitleLarge}>{t.stories.title}</h2>
               <p className={styles.sectionLead}>{t.stories.lead}</p>
             </div>
@@ -161,34 +209,21 @@ export default function Home() {
                 </figure>
               ))}
             </div>
-
-            <div className={styles.twoUp} data-reveal>
-              <div>
-                <h3 className={styles.subTitle}>{t.stories.focusTitle}</h3>
-                <ul className={styles.chips}>
-                  {t.stories.focus.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h3 className={styles.subTitle}>{t.stories.languagesTitle}</h3>
-                <ul className={styles.chips}>
-                  {t.stories.languages.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
           </div>
         </section>
 
         {/* ── Philosophie / Philosophy ────────────────────────────────── */}
         <section className={styles.philosophy} id={SECTIONS.philosophy}>
           <div className={styles.containerNarrow} data-reveal>
-            <p className={styles.eyebrow}>{t.nav.philosophy}</p>
             <h2 className={styles.sectionTitleLarge}>{t.philosophy.title}</h2>
-            <p className={styles.philosophyText}>{t.philosophy.text}</p>
+            {t.philosophy.paragraphs.map((paragraph) => (
+              <p key={paragraph} className={styles.philosophyText}>
+                {renderEmphasis(paragraph)}
+              </p>
+            ))}
+            <a href={`#${SECTIONS.contact}`} className={styles.philosophyCta}>
+              {t.philosophy.cta}
+            </a>
           </div>
         </section>
 
@@ -196,7 +231,6 @@ export default function Home() {
         <section className={styles.section} id={SECTIONS.profile}>
           <div className={styles.container}>
             <div className={styles.sectionHead} data-reveal>
-              <p className={styles.eyebrow}>{t.nav.profile}</p>
               <h2 className={styles.sectionTitleLarge}>{t.profile.title}</h2>
             </div>
 
@@ -209,6 +243,9 @@ export default function Home() {
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
+                <div className={styles.blockLinks}>
+                  <a href={`#${SECTIONS.focus}`}>{t.profile.focusLink}</a>
+                </div>
               </div>
               <div>
                 <h3 className={styles.subTitle}>{t.profile.publicationsTitle}</h3>
@@ -225,14 +262,38 @@ export default function Home() {
               </div>
             </div>
 
-            <p className={styles.statement} data-reveal>
+            <div className={styles.founder} data-reveal>
+              <h3 className={styles.subTitle}>{t.profile.founderTitle}</h3>
+              <div className={styles.founderGrid}>
+                <Image
+                  src={portrait}
+                  alt={t.profile.founderName}
+                  className={styles.founderPhoto}
+                  priority={false}
+                />
+                <div>
+                  <p className={styles.founderName}>{t.profile.founderName}</p>
+                  <p className={styles.founderRole}>{t.profile.founderRole}</p>
+                  <p className={styles.blockText}>{t.profile.founderText}</p>
+                  <p className={styles.founderMotto}>{t.profile.founderMotto}</p>
+                  <div className={styles.blockLinks}>
+                    <a href={t.profile.founderLink.href} target="_blank" rel="noopener noreferrer">
+                      {t.profile.founderLink.label}
+                      <span aria-hidden="true"> ↗</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p className={`${styles.statement} ${styles.outro}`} data-reveal>
               {t.profile.outro}
             </p>
           </div>
         </section>
 
         {/* ── Kontakt / Contact ───────────────────────────────────────── */}
-        <section className={styles.contact}>
+        <section className={styles.contact} id={SECTIONS.contact}>
           <div className={styles.container}>
             <div className={styles.contactGrid}>
               <div data-reveal>
