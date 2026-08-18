@@ -28,6 +28,7 @@ export type LegalSection = {
   heading: string;
   lines?: string[];
   paragraphs?: string[];
+  links?: LinkItem[];
 };
 
 const de = {
@@ -462,19 +463,86 @@ const de = {
   },
 
   privacy: {
-    title: 'Datenschutz',
-    placeholder:
-      'Die vollständige Datenschutzerklärung wird derzeit erstellt und an dieser Stelle veröffentlicht. Bis dahin gilt: Diese Website setzt keine Tracking- oder Werbe-Cookies ein. Personenbezogene Daten werden ausschließlich verarbeitet, wenn Sie uns über das Kontaktformular, per E-Mail oder telefonisch kontaktieren – und ausschließlich zur Bearbeitung Ihrer Anfrage.',
-    controllerTitle: 'Verantwortliche Stelle',
-    controller: [
-      'Marie-Louise Schäfer, Talentbegleitung',
-      'Untersbergstr. 21, 83457 Bayerisch Gmain, Germany',
-      'Telefon: +49 151 2726 8926',
-      'E-Mail: schaefer@talentbegleitung.de',
-    ],
-    rightsTitle: 'Ihre Rechte',
-    rights:
-      'Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer Daten sowie ein Widerspruchsrecht und ein Recht auf Datenübertragbarkeit. Wenden Sie sich dafür gerne an die oben genannte Adresse.',
+    title: 'Datenschutzerklärung',
+    updated: 'Stand: August 2026',
+    sections: [
+      {
+        heading: 'Allgemeine Hinweise',
+        paragraphs: [
+          'Der Schutz Ihrer persönlichen Daten ist uns wichtig. Wir verarbeiten personenbezogene Daten ausschließlich im Rahmen der gesetzlichen Bestimmungen, insbesondere der Datenschutz-Grundverordnung (DSGVO), des Bundesdatenschutzgesetzes (BDSG) und des Telekommunikation-Digitale-Dienste-Datenschutz-Gesetzes (TDDDG). Diese Datenschutzerklärung informiert Sie darüber, welche Daten beim Besuch dieser Website und bei der Nutzung unserer Kontaktmöglichkeiten verarbeitet werden.',
+          'Diese Website nutzt keine Analyse-, Tracking- oder Werbedienste und setzt keine Cookies zu diesen Zwecken ein.',
+        ],
+      },
+      {
+        heading: 'Verantwortliche Stelle',
+        paragraphs: ['Verantwortliche Stelle im Sinne von Art. 4 Nr. 7 DSGVO ist:'],
+        lines: [
+          'Marie-Louise Schäfer, Talentbegleitung',
+          'Untersbergstr. 21, 83457 Bayerisch Gmain, Deutschland',
+          'Telefon: +49 151 2726 8926',
+          'E-Mail: schaefer@talentbegleitung.de',
+        ],
+      },
+      {
+        heading: 'Hosting und Server-Logfiles',
+        paragraphs: [
+          'Diese Website wird bei der Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA, gehostet. Beim Aufruf der Website verarbeitet Vercel automatisch Informationen, die Ihr Browser übermittelt (sogenannte Server-Logfiles). Dazu gehören insbesondere die IP-Adresse, Datum und Uhrzeit des Zugriffs, die aufgerufene Seite, Browsertyp und -version sowie das verwendete Betriebssystem.',
+          'Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse liegt in der sicheren, stabilen und effizienten Bereitstellung der Website. Die Logdaten werden nicht mit anderen Datenquellen zusammengeführt.',
+          'Mit Vercel besteht ein Vertrag über Auftragsverarbeitung gemäß Art. 28 DSGVO. Soweit Daten in die USA übermittelt werden, stützt sich die Übermittlung auf den Angemessenheitsbeschluss der EU-Kommission zum EU-U.S. Data Privacy Framework sowie ergänzend auf EU-Standardvertragsklauseln.',
+        ],
+        links: [{ label: 'Datenschutzerklärung von Vercel', href: 'https://vercel.com/legal/privacy-policy' }],
+      },
+      {
+        heading: 'SSL-/TLS-Verschlüsselung',
+        paragraphs: [
+          'Diese Website nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL-/TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers mit „https://“ beginnt, sowie am Schloss-Symbol in Ihrer Browserzeile.',
+        ],
+      },
+      {
+        heading: 'Kontaktformular',
+        paragraphs: [
+          'Wenn Sie uns über das Kontaktformular kontaktieren, verarbeiten wir die von Ihnen angegebenen Daten – Name, E-Mail-Adresse, gegebenenfalls Telefonnummer sowie Ihre Nachricht – ausschließlich zur Bearbeitung Ihrer Anfrage. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Anbahnung oder Durchführung eines Vertrags zusammenhängt, im Übrigen Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Beantwortung Ihrer Anfrage).',
+          'Für die technische Übermittlung des Formulars nutzen wir den Dienst Web3Forms (api.web3forms.com). Ihre Eingaben werden über diesen Dienst an unser E-Mail-Postfach weitergeleitet und nach Angaben des Anbieters nicht dauerhaft gespeichert.',
+          'Ihre Daten werden gelöscht, sobald Ihre Anfrage abschließend bearbeitet ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen. Alternativ können Sie uns jederzeit direkt per E-Mail oder Telefon kontaktieren.',
+        ],
+        links: [{ label: 'Datenschutzerklärung von Web3Forms', href: 'https://web3forms.com/privacy' }],
+      },
+      {
+        heading: 'Kontakt per E-Mail und Telefon',
+        paragraphs: [
+          'Wenn Sie uns per E-Mail oder Telefon kontaktieren, verarbeiten wir Ihre Angaben (z. B. Name, Kontaktdaten, Inhalt der Anfrage) zur Bearbeitung Ihres Anliegens. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO bzw. Art. 6 Abs. 1 lit. f DSGVO. Die Daten werden gelöscht, sobald sie für die Erreichung des Zwecks nicht mehr erforderlich sind und keine gesetzlichen Aufbewahrungspflichten bestehen.',
+        ],
+      },
+      {
+        heading: 'Cookies und lokale Speicherung',
+        paragraphs: [
+          'Diese Website setzt keine Cookies zu Analyse-, Tracking- oder Werbezwecken ein. Im lokalen Speicher Ihres Browsers (Local Storage) werden lediglich zwei technisch erforderliche Angaben abgelegt: Ihre Sprachwahl und Ihre Entscheidung im Cookie-Hinweis. Diese Speicherung ist für die Bereitstellung des von Ihnen gewünschten Dienstes erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG); eine Übermittlung dieser Angaben an uns oder an Dritte findet nicht statt.',
+          'Sie können diese Einträge jederzeit über die Cookie-Einstellungen dieser Website ändern oder durch Löschen der Websitedaten in Ihrem Browser entfernen.',
+        ],
+      },
+      {
+        heading: 'Schriftarten',
+        paragraphs: [
+          'Diese Website verwendet die Schriftart „Inter“. Die Schriftdateien werden lokal von unserem Server ausgeliefert; eine Verbindung zu Servern von Google oder anderen Drittanbietern findet beim Laden der Schriften nicht statt.',
+        ],
+      },
+      {
+        heading: 'Ihre Rechte',
+        paragraphs: [
+          'Sie haben hinsichtlich der Sie betreffenden personenbezogenen Daten folgende Rechte: Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO), Löschung (Art. 17 DSGVO), Einschränkung der Verarbeitung (Art. 18 DSGVO) sowie Datenübertragbarkeit (Art. 20 DSGVO). Zur Ausübung Ihrer Rechte genügt eine formlose Mitteilung an die oben genannte verantwortliche Stelle.',
+          'Widerspruchsrecht (Art. 21 DSGVO): Soweit wir Ihre Daten auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO verarbeiten, haben Sie das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit Widerspruch gegen die Verarbeitung einzulegen.',
+          'Soweit eine Verarbeitung auf Ihrer Einwilligung beruht, können Sie diese jederzeit mit Wirkung für die Zukunft widerrufen.',
+          'Sie haben zudem das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren (Art. 77 DSGVO). Für uns zuständig ist das Bayerische Landesamt für Datenschutzaufsicht (BayLDA), Promenade 18, 91522 Ansbach.',
+        ],
+        links: [{ label: 'Bayerisches Landesamt für Datenschutzaufsicht', href: 'https://www.lda.bayern.de' }],
+      },
+      {
+        heading: 'Aktualität dieser Datenschutzerklärung',
+        paragraphs: [
+          'Diese Datenschutzerklärung hat den Stand August 2026. Wir passen sie an, sobald Änderungen an der Website oder rechtliche Vorgaben dies erforderlich machen.',
+        ],
+      },
+    ] as LegalSection[],
   },
 };
 
@@ -913,18 +981,85 @@ const en: TranslationType = {
 
   privacy: {
     title: 'Privacy Policy',
-    placeholder:
-      'The full privacy policy is currently being prepared and will be published here. Until then: this website uses no tracking or advertising cookies. Personal data is processed only when you contact us via the contact form, by email or by phone – and solely in order to handle your enquiry.',
-    controllerTitle: 'Controller',
-    controller: [
-      'Marie-Louise Schäfer, Talentbegleitung',
-      'Untersbergstr. 21, 83457 Bayerisch Gmain, Germany',
-      'Phone: +49 151 2726 8926',
-      'Email: schaefer@talentbegleitung.de',
-    ],
-    rightsTitle: 'Your rights',
-    rights:
-      'You have the right at any time to information, rectification, erasure and restriction of the processing of your data, as well as a right to object and a right to data portability. Please contact us at the address above.',
+    updated: 'Last updated: August 2026',
+    sections: [
+      {
+        heading: 'General information',
+        paragraphs: [
+          'Protecting your personal data matters to us. We process personal data exclusively within the scope of the applicable legal provisions, in particular the EU General Data Protection Regulation (GDPR), the German Federal Data Protection Act (BDSG), and the German Telecommunications Digital Services Data Protection Act (TDDDG). This privacy policy explains which data is processed when you visit this website and when you use our contact options.',
+          'This website uses no analytics, tracking, or advertising services and sets no cookies for such purposes.',
+        ],
+      },
+      {
+        heading: 'Controller',
+        paragraphs: ['The controller within the meaning of Art. 4 (7) GDPR is:'],
+        lines: [
+          'Marie-Louise Schäfer, Talentbegleitung',
+          'Untersbergstr. 21, 83457 Bayerisch Gmain, Germany',
+          'Phone: +49 151 2726 8926',
+          'Email: schaefer@talentbegleitung.de',
+        ],
+      },
+      {
+        heading: 'Hosting and server log files',
+        paragraphs: [
+          'This website is hosted by Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA. When you access the website, Vercel automatically processes information transmitted by your browser (so-called server log files). This includes in particular your IP address, the date and time of access, the page accessed, browser type and version, and the operating system used.',
+          'This processing is based on Art. 6 (1) (f) GDPR. Our legitimate interest lies in providing the website securely, reliably, and efficiently. The log data is not combined with other data sources.',
+          'A data processing agreement pursuant to Art. 28 GDPR is in place with Vercel. Insofar as data is transferred to the USA, the transfer is based on the EU Commission’s adequacy decision on the EU-U.S. Data Privacy Framework, supplemented by EU standard contractual clauses.',
+        ],
+        links: [{ label: 'Vercel privacy policy', href: 'https://vercel.com/legal/privacy-policy' }],
+      },
+      {
+        heading: 'SSL/TLS encryption',
+        paragraphs: [
+          'For security reasons and to protect the transmission of confidential content, this website uses SSL/TLS encryption. You can recognize an encrypted connection by the “https://” prefix and the lock symbol in your browser’s address bar.',
+        ],
+      },
+      {
+        heading: 'Contact form',
+        paragraphs: [
+          'If you contact us via the contact form, we process the data you provide – name, email address, phone number (if given), and your message – exclusively in order to handle your enquiry. The legal basis is Art. 6 (1) (b) GDPR where your enquiry relates to entering into or performing a contract, and otherwise Art. 6 (1) (f) GDPR (our legitimate interest in responding to your enquiry).',
+          'For the technical delivery of the form we use the service Web3Forms (api.web3forms.com). Your entries are forwarded to our email inbox via this service and, according to the provider, are not stored permanently.',
+          'Your data is deleted once your enquiry has been fully dealt with, unless statutory retention obligations require otherwise. Alternatively, you can always contact us directly by email or phone.',
+        ],
+        links: [{ label: 'Web3Forms privacy policy', href: 'https://web3forms.com/privacy' }],
+      },
+      {
+        heading: 'Contact by email and phone',
+        paragraphs: [
+          'If you contact us by email or phone, we process the information you provide (e.g. name, contact details, content of your enquiry) in order to handle your request. The legal basis is Art. 6 (1) (b) GDPR or Art. 6 (1) (f) GDPR. The data is deleted once it is no longer required for this purpose and no statutory retention obligations apply.',
+        ],
+      },
+      {
+        heading: 'Cookies and local storage',
+        paragraphs: [
+          'This website sets no cookies for analytics, tracking, or advertising purposes. Only two technically necessary items are stored in your browser’s local storage: your language choice and your decision in the cookie notice. This storage is necessary to provide the service you request (Section 25 (2) no. 2 TDDDG); this information is not transmitted to us or to any third parties.',
+          'You can change these entries at any time via this website’s cookie preferences or remove them by deleting the site data in your browser.',
+        ],
+      },
+      {
+        heading: 'Fonts',
+        paragraphs: [
+          'This website uses the “Inter” typeface. The font files are served locally from our own server; no connection to Google or other third-party servers is established when the fonts are loaded.',
+        ],
+      },
+      {
+        heading: 'Your rights',
+        paragraphs: [
+          'With regard to your personal data, you have the following rights: access (Art. 15 GDPR), rectification (Art. 16 GDPR), erasure (Art. 17 GDPR), restriction of processing (Art. 18 GDPR), and data portability (Art. 20 GDPR). An informal message to the controller named above is sufficient to exercise your rights.',
+          'Right to object (Art. 21 GDPR): Insofar as we process your data on the basis of Art. 6 (1) (f) GDPR, you have the right to object to the processing at any time on grounds relating to your particular situation.',
+          'Where processing is based on your consent, you may withdraw it at any time with effect for the future.',
+          'You also have the right to lodge a complaint with a data protection supervisory authority (Art. 77 GDPR). The authority responsible for us is the Bavarian State Office for Data Protection Supervision (BayLDA), Promenade 18, 91522 Ansbach, Germany.',
+        ],
+        links: [{ label: 'Bavarian State Office for Data Protection Supervision', href: 'https://www.lda.bayern.de' }],
+      },
+      {
+        heading: 'Currency of this privacy policy',
+        paragraphs: [
+          'This privacy policy is dated August 2026. We will update it whenever changes to the website or legal requirements make this necessary.',
+        ],
+      },
+    ] as LegalSection[],
   },
 };
 

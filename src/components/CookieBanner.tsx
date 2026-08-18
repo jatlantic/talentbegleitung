@@ -39,9 +39,13 @@ export default function CookieBanner() {
     setExpanded(false);
   };
 
-  // Nothing renders until after hydration, so a returning visitor with a
-  // stored choice never sees the banner flash past.
-  const visible = hydrated && (reopened || consent === null);
+  // Auto-show is switched off: the site stores only technically necessary
+  // data (§ 25 Abs. 2 TDDDG), which needs no consent. The dialog stays
+  // reachable via the footer / privacy-page "Cookie-Einstellungen" buttons.
+  // To bring the banner back (e.g. when adding analytics), make this
+  // `hydrated && (reopened || consent === null)` again.
+  void consent;
+  const visible = hydrated && reopened;
   if (!visible) return null;
 
   return (
