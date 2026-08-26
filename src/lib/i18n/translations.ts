@@ -139,7 +139,7 @@ const de = {
             ],
           },
           {
-            text: 'Sprechen Sie uns zu diesen oder weiteren Themen gerne an. In drei bis zehn vertraulichen Coaching-Sessions von 60 bis 90 Minuten werden – auf Basis der Expertise des Coachees und der jahrzehntelangen Erfahrung eines Talentbegleiters – unmittelbar anwendbare Lösungen individuell entwickelt und in die Praxis überführt. Die Coachings finden digital oder vor Ort statt.',
+            text: 'Sprechen Sie uns zu diesen oder weiteren Themen gerne an. In drei bis zehn vertraulichen Coaching-Sessions von 60 bis 90 Minuten werden – auf Basis der jahrzehntelangen Erfahrung eines Talentbegleiters – unmittelbar anwendbare Lösungen individuell entwickelt und in die Praxis überführt. Die Coachings finden digital oder vor Ort statt.',
           },
           {
             text: 'Das Coaching führt erfahrungsgemäß zu einer unmittelbaren Entlastung der gecoachten Persönlichkeit und ihres unmittelbaren Umfelds und schafft in kurzer Zeit hochindividuelle Lösungen.',
@@ -160,7 +160,7 @@ const de = {
               'Leistungssteigerung',
               'Rollenverständnis',
               'Schnittstellendynamiken',
-              'standortunabhängiger Zusammenarbeit',
+              'Standortunabhängiger Zusammenarbeit',
               'Teamentwicklung zu Hochleistungsteams',
               'Teamdynamik',
               'Integration neuer Technologien',
@@ -314,7 +314,7 @@ const de = {
       'Wir fungieren als **Technologiebrückenköpfe** und **vertrauliche Wegbegleiter** für Sie.',
       'Entfalten Sie Ihr Potenzial voll. Nutzen Sie Ihre Stärken, Kompetenzen und Beziehungen auf individueller, Team- und Organisationsebene vollumfänglich!',
     ],
-    cta: 'Gerne mit uns.',
+    cta: "Let's take the next step together.",
   },
 
   profile: {
@@ -327,11 +327,11 @@ const de = {
       'Master Business with AI – fundierte Orientierung für den sinnvollen Einsatz neuer Technologien',
     ],
     focusLink: 'Zu unseren Kunden-Schwerpunkten',
-    founderTitle: 'Das Gesicht der Gründerin',
-    founderName: 'Marie-Louise Schäfer, MBAI',
+    founderTitle: 'Das Gesicht hinter Talentbegleitung',
+    founderName: 'Marie-Louise Schäfer, MBAI®',
     founderRole: 'Gründerin von Talentbegleitung',
     founderText:
-      'Juristin, ausgebildete Mediatorin und systemische Coachin – mit Stationen bei Roland Berger, der Technischen Universität München und im Management-Team der Max Planck Digital Library. 2011 gründete sie Talentbegleitung für Persönlichkeits- und Organisationsentwicklung. 2025 folgte das Universitätszertifikat Master Business with AI (MBAI®) der Hochschule Fresenius; seit 2026 ist sie zudem Partnerin bei Doujak Corporate Development.',
+      'Als systemische Coachin, ausgebildete Mediatorin und Juristin habe ich Talentbegleitung 2011 gegründet, um Persönlichkeits- und Organisationsentwicklung zu begleiten und betreue darüber heute ein vielfältiges und internationales Portfolio. Mein Werdegang umfasst Rollen bei Roland Berger, der Technischen Universität München und im Leitungsteam der Max Planck Digital Library. Darauf aufbauend habe ich 2025 das Universitätszertifikat Master Business with AI (MBAI®) an der Hochschule Fresenius erworben und bin seit 2026 Partnerin bei Doujak Corporate Development.',
     founderMotto: '„Don’t limit your challenges. Challenge your limits.“',
     founderLink: {
       label: 'LinkedIn-Profil',
@@ -568,7 +568,7 @@ const en: TranslationType = {
 
   hero: {
     title: 'Strengthen leadership. Empower teams. Shape the future.',
-    lead: 'Talent facilitation for leaders, teams, and organizations who want to stay clear, effective, and able to act in brittle and complex times.',
+    lead: 'Talent facilitation for leaders, teams, and organizations to navigate complex and challenging times with clarity and decisiveness.',
     cta: 'Tell us about your challenge',
     ctaSecondary: 'Explore our services',
   },
@@ -578,7 +578,7 @@ const en: TranslationType = {
     achieve: [
       {
         title: 'Strengthen leadership',
-        text: 'Clarity in complex situations, sound decisions, presence under pressure.',
+        text: 'Clarity in complex situations, sound decision-making and presence under pressure.',
       },
       {
         title: 'Empower teams',
@@ -586,7 +586,7 @@ const en: TranslationType = {
       },
       {
         title: 'Shape the future',
-        text: 'Integrate new technologies without losing sight of the people.',
+        text: 'Integrate new technologies while keeping people at the center.',
       },
     ],
     statement:
@@ -613,7 +613,7 @@ const en: TranslationType = {
 
   services: {
     title: 'Services',
-    lead: 'Our talent facilitation offers effective formats for individuals, teams, and organizations.',
+    lead: 'Our talent facilitation offers effective formats for individuals, teams and organizations.',
     summary: [
       {
         id: 'executive-coaching',
@@ -636,7 +636,7 @@ const en: TranslationType = {
         text: 'Looking for further **Organizational Impulses**? We design them precisely for you and your organization.',
       },
     ] as SummaryItem[],
-    note: 'All formats are practical, confidential, and tailored to your context – from one-on-one coaching to multi-day in-person workshops.',
+    note: 'All formats are practical, confidential, and tailored to your context – from 1on1 coaching to multi-day in-person workshops.',
     items: [
       {
         id: 'executive-coaching',
@@ -656,7 +656,7 @@ const en: TranslationType = {
             ],
           },
           {
-            text: 'Please contact us with these or other topics. In three to ten confidential coaching sessions of 60 to 90 minutes, we develop individually tailored solutions based on the expertise of the coaching client and the decades of experience of a talent facilitator – and translate them into practice. Coaching sessions can take place virtually or on site.',
+            text: 'Please contact us with these or other topics. In three to ten confidential coaching sessions of 60 to 90 minutes, we develop individually tailored solutions based on the decades of experience of a talent facilitator – and translate them into practice. Coaching sessions can take place virtually or on site.',
           },
           {
             text: 'Experience shows that coaching leads to immediate relief for the person being coached and their close environment and creates highly individualized solutions in a short period of time.',
@@ -685,7 +685,7 @@ const en: TranslationType = {
             ],
           },
           {
-            text: 'Feel free to reach out to us with any of these or additional topics. In our experience, workshops lead to noticeable relief for both the leader and the team members.',
+            text: 'Feel free to reach out to us with any of these or additional topics. In our experience, workshops can provide noticeable relief for both leaders and team members.',
           },
           {
             heading: 'Typical steps',
@@ -697,7 +697,7 @@ const en: TranslationType = {
             ],
           },
           {
-            text: 'The workshop takes place either at your location or at a jointly chosen workshop venue. In a team development process of one to three days, we create highly individualized added value for your team.',
+            text: 'The workshop can take place in your work environment or at a mutually chosen venue. During the one-to three-day team development process, we will create highly individualised added value for your team.',
           },
         ],
       },
@@ -727,7 +727,7 @@ const en: TranslationType = {
       {
         id: 'trainings',
         title: 'Trainings',
-        lead: 'We offer trainings on a range of topics, including:',
+        lead: 'Trainings that create space for continuous learning, exchange, and sustainable change. Alps Days offers a distinctive format that merges time in nature with strategic clarity and alignment.',
         blocks: [
           {
             boxed: true,
@@ -844,11 +844,11 @@ const en: TranslationType = {
       'Master Business with AI – well-founded orientation for the meaningful use of new technologies',
     ],
     focusLink: 'See our client focus areas',
-    founderTitle: 'The face of the founder',
-    founderName: 'Marie-Louise Schäfer, MBAI',
+    founderTitle: 'Meet the Founder',
+    founderName: 'Marie-Louise Schäfer, MBAI®',
     founderRole: 'Founder of Talentbegleitung',
     founderText:
-      'Lawyer, trained mediator, and systemic coach – with previous roles at Roland Berger, the Technical University of Munich, and on the management team of the Max Planck Digital Library. In 2011 she founded Talentbegleitung for personality and organizational development. In 2025 she completed the Master Business with AI (MBAI®) university certificate at Fresenius University of Applied Sciences; since 2026 she is also a partner at Doujak Corporate Development.',
+      'As a systemic coach, trained mediator, and lawyer, I founded Talentbegleitung in 2011 to guide personal and organizational growth; today, my work spans a diverse and international portfolio. My journey includes previous roles at Roland Berger, the Technical University of Munich, and the management team at the Max Planck Digital Library. Building on this foundation, I earned my Master Business with AI (MBAI®) at Fresenius University of Applied Sciences in 2025 and joined Doujak Corporate Development as a Partner in 2026.',
     founderMotto: '“Don’t limit your challenges. Challenge your limits.”',
     founderLink: {
       label: 'LinkedIn profile',
