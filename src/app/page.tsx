@@ -281,6 +281,10 @@ export default function Home() {
                       {t.profile.founderLink.label}
                       <span aria-hidden="true"> ↗</span>
                     </a>
+                    <a href={t.profile.founderPdfLink.href} target="_blank" rel="noopener noreferrer">
+                      {t.profile.founderPdfLink.label}
+                      <span aria-hidden="true"> ↗</span>
+                    </a>
                   </div>
                 </div>
               </div>

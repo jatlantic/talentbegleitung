@@ -314,7 +314,7 @@ const de = {
       'Wir fungieren als **Technologiebrückenköpfe** und **vertrauliche Wegbegleiter** für Sie.',
       'Entfalten Sie Ihr Potenzial voll. Nutzen Sie Ihre Stärken, Kompetenzen und Beziehungen auf individueller, Team- und Organisationsebene vollumfänglich!',
     ],
-    cta: "Let's take the next step together.",
+    cta: 'Gerne mit uns.',
   },
 
   profile: {
@@ -336,6 +336,10 @@ const de = {
     founderLink: {
       label: 'LinkedIn-Profil',
       href: 'https://www.linkedin.com/in/marie-louise-sch%C3%A4fer-989189129/',
+    },
+    founderPdfLink: {
+      label: 'Path of Founder',
+      href: '/path-of-founder-marie-louise-schaefer.pdf',
     },
     publicationsTitle: 'Publikationen',
     publicationsLead: 'Wir teilen unsere Gedanken gerne mit Ihnen. Sie finden unsere Publikationen in:',
@@ -625,11 +629,11 @@ const en: TranslationType = {
       },
       {
         id: 'trainings',
-        text: 'With **Trainings**, we create spaces for learning, exchange, and sustainable change.',
+        text: '**Trainings** that create space for continuous learning, exchange, and sustainable change.',
       },
       {
         id: 'alps-days',
-        text: 'With **Alps Days**, we offer a distinctive format where time in nature and strategic clarity come together.',
+        text: '**Alps Days** offers a distinctive format that merges time in nature with strategic clarity and alignment.',
       },
       {
         id: 'organisationsimpulse',
@@ -831,7 +835,7 @@ const en: TranslationType = {
       'We act as **technology bridgeheads** and **confidential companions** on your path.',
       'Unfold your full potential. Make full use of your strengths, capabilities, and relationships at the individual, team, and organizational level!',
     ],
-    cta: 'Gladly with us.',
+    cta: 'Let’s take the next step together.',
   },
 
   profile: {
@@ -853,6 +857,10 @@ const en: TranslationType = {
     founderLink: {
       label: 'LinkedIn profile',
       href: 'https://www.linkedin.com/in/marie-louise-sch%C3%A4fer-989189129/',
+    },
+    founderPdfLink: {
+      label: 'Path of Founder',
+      href: '/path-of-founder-marie-louise-schaefer.pdf',
     },
     publicationsTitle: 'Publications',
     publicationsLead: 'We are happy to share our thinking with you. Selected publications include:',
